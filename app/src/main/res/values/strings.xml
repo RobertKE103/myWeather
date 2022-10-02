@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">my weather</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_for_your_location">Search for your location...</string>
+    <string name="cities">Cities</string>
+    <string name="windText">%s м/c</string>
+    <string name="humidityText">%s %</string>
+    <string name="cloudText">%s %</string>
+    <string name="chanceOfRainText">%s %</string>
+</resources>
