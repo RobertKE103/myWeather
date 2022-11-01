@@ -7,8 +7,5 @@ import androidx.room.PrimaryKey
 data class NameCitiesDbModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var name: String,
-    var temp: String,
-    var state: Boolean,
-    var imgUrl: String
+    var name: String
 )

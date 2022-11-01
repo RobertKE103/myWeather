@@ -9,7 +9,7 @@ class RetrofitRepository {
         return RetrofitInstance.api.getWeather(
             API_URL,
             nameCity,
-            10,
+            3,
             "no",
             "no"
         )
@@ -17,6 +17,6 @@ class RetrofitRepository {
 
 
     companion object {
-        const val API_URL = "f79a084cbb1c454db02122958222009"
+        const val API_URL = "e062d43e8d0a44a590a75330221509"
     }
 }

@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.newweather.R
 import com.example.newweather.databinding.FragmentSearchBinding
 
@@ -31,16 +32,19 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[SearchFragmentViewModel::class.java]
-//        viewModel.weatherList.observe(viewLifecycleOwner) {
-//            adapter.setList = it
-//        }
-
+        getNameCity()
         setOnEditorActionListener()
         onFocusChangeListener()
         setOnClickListener()
     }
 
-
+    private fun getNameCity() {
+        viewModel.getCity()
+        viewModel.city.observe(viewLifecycleOwner) {
+            binding.nameCityFromSearchFragment.text =
+                String.format(getString(R.string.name_city_from_ten_days_fragment), it?.name)
+        }
+    }
 
     private fun setOnClickListener() {
         binding.inputNameCity.setOnClickListener {
@@ -70,6 +74,7 @@ class SearchFragment : Fragment() {
 
     private fun addCityFromVd(v: TextView) {
         val text = v.text.toString()
+        viewModel.deleteCity()
         viewModel.addCity(text)
     }
 
@@ -80,10 +85,9 @@ class SearchFragment : Fragment() {
 
     private fun cursorFalse() {
         binding.inputNameCity.isCursorVisible = false
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, SearchFragment())
-            .addToBackStack(null)
-            .commit()
+        activity?.finish()
+        requireActivity().findNavController(R.id.nav_host_fragment)
+            .navigate(R.id.action_global_main_fragment)
     }
 
 

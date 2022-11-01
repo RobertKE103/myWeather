@@ -2,6 +2,7 @@ package com.example.newweather.presentation.startWork
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.newweather.data.WeatherRepositoryImpl
@@ -10,21 +11,20 @@ import com.example.newweather.domain.models.retrofit.forecastday.Weather
 import com.example.newweather.domain.usecase.AddCityUseCase
 import com.example.newweather.domain.usecase.DeleteCityUseCase
 import com.example.newweather.domain.usecase.GetCityFromUserUseCase
-import com.example.newweather.domain.usecase.GetWeatherForecastDayUseCase
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.util.jar.Attributes.Name
 
 class SearchFragmentViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = WeatherRepositoryImpl(application)
     private val addCityUseCase = AddCityUseCase(repository)
-    private val getCityFromUserUseCase = GetCityFromUserUseCase(repository)
     private val deleteCityUseCase = DeleteCityUseCase(repository)
+    private val getCityFromUserUseCase = GetCityFromUserUseCase(repository)
     private var _weather = MutableLiveData<Response<Weather>?>()
-    private val getWeather = GetWeatherForecastDayUseCase(repository)
-//    private var _weatherList = MutableLiveData<List<NameCitiesDbModel>>()
-//    val weatherList: LiveData<List<NameCitiesDbModel>> get() = _weatherList
     val weather get() = _weather
+    private var _city = MutableLiveData<NameCitiesDbModel>()
+    val city: LiveData<NameCitiesDbModel> get() = _city
 
 
     fun addCity(city: String){
@@ -33,17 +33,19 @@ class SearchFragmentViewModel(application: Application) : AndroidViewModel(appli
         }
     }
 
-    fun delete(nameCitiesDbModel: NameCitiesDbModel){
+    fun getCity(){
         viewModelScope.launch {
-            deleteCityUseCase.deleteCity(nameCitiesDbModel)
+            _city.value = getCityFromUserUseCase.getCityFromUser()
         }
     }
 
-    fun requests(city: String) {
+
+    fun deleteCity(){
         viewModelScope.launch {
-            _weather.value = getWeather.invoke(city)
+            deleteCityUseCase.deleteCity()
         }
     }
+
 
 
 }

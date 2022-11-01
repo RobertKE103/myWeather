@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.startWork.SearchFragment"
-    android:background="@color/white">
+    android:background="@color/black">
 
 
     <EditText
@@ -15,24 +15,35 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:textColorHint="@android:color/darker_gray"
-        android:textColor="@color/black"
+        android:autofillHints="addressLocality"
         android:background="@drawable/custom_input"
-        android:drawableEnd="@drawable/ic_baseline_search_24"
+        android:drawableEnd="@drawable/ic_baseline_keyboard_voice_24"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:padding="10dp"
         android:hint="@string/search_for_your_location"
+        android:imeOptions="actionDone"
         android:inputType="textPersonName|textCapWords"
         android:minHeight="48dp"
+        android:padding="10dp"
         android:singleLine="true"
-        android:imeOptions="actionDone"
+        android:textColor="@color/titleColor"
+        android:textColorHint="@color/titleColor"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="addressLocality" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-
+    <TextView
+        android:id="@+id/nameCityFromSearchFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/name_city_from_fragment_search"
+        android:textColor="@color/titleColor"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/inputNameCity"
+        app:layout_constraintTop_toBottomOf="@+id/inputNameCity" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

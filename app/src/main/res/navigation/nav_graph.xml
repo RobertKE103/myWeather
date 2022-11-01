@@ -6,37 +6,43 @@
     app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.newweather.presentation.main.MainFragment"
+        android:id="@+id/tempNowFragment"
+        android:name="com.example.newweather.presentation.main.viewPager.tempNow.TempNowFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_temp_now" >
         <action
-            android:id="@+id/action_mainFragment_to_searchFragment"
+            android:id="@+id/action_tempNowFragment_to_searchFragment"
             app:destination="@id/searchFragment"
-            app:popUpTo="@id/mainFragment" />
-        <action
-            android:id="@+id/action_mainFragment_to_tenDaysFragment"
-            app:destination="@id/tenDaysFragment"
-            app:popUpTo="@id/mainFragment" />
+            app:popUpTo="@id/tempNowFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.newweather.presentation.startWork.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
-        <action
-            android:id="@+id/action_searchFragment_to_tenDaysFragment"
-            app:destination="@id/tenDaysFragment"
-            app:popUpTo="@id/searchFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/tenDaysFragment"
-        android:name="com.example.newweather.presentation.tenDays.TenDaysFragment"
+        android:name="com.example.newweather.presentation.main.viewPager.threeDays.ThreeDaysFragment"
         android:label="fragment_ten_days"
-        tools:layout="@layout/fragment_ten_days" >
-        <action
-            android:id="@+id/action_tenDaysFragment_to_searchFragment"
-            app:destination="@id/searchFragment"
-            app:popUpTo="@id/tenDaysFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_three_days" />
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.newweather.presentation.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+
+
+    <action
+        android:id="@+id/action_global_main_fragment"
+        app:destination="@id/mainFragment"/>
+
+    <action
+        android:id="@+id/action_global_ten_days_fragment"
+        app:destination="@id/tenDaysFragment"/>
+
+    <action
+        android:id="@+id/action_global_search_fragment"
+        app:destination="@id/searchFragment"/>
+
 </navigation>

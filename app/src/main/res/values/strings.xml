@@ -8,4 +8,7 @@
     <string name="humidityText">%s %</string>
     <string name="cloudText">%s %</string>
     <string name="chanceOfRainText">%s %</string>
+    <string name="name_city_from_ten_days_fragment">%s</string>
+    <string name="name_city_from_fragment_search">Ваш город: %s</string>
+    <string name="c">°C</string>
 </resources>
